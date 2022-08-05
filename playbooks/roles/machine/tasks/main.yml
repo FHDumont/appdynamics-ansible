@@ -4,6 +4,10 @@
     msg: "The variable 'controller_host_name' is empty"
   when: (controller_host_name is not defined) or (controller_host_name|length == 0)
 
+- name: Print input_method
+  ansible.builtin.debug:
+    msg: "input_method is '{{ input_method }}'."
+
 - name: Pre-configure application/tier/node facts
   block:
     # note: set_fact has low precedence for existing variables
@@ -58,6 +62,7 @@
   when: 
     - ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
     - create_appdynamics_user | bool
+    - input_method == "install"
 
 # SysV or systemd system
 - name: Determine if SysV or systemd system
@@ -83,6 +88,11 @@
 
 # Download Agent
 - include_tasks: download_machine_agent_linux.yml
+  when: 
+    - ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
+    - input_method == "install"
+
+- include_tasks: configure_machine_agent_linux.yml
   when: ansible_os_family == 'RedHat' or ansible_os_family == 'Debian'
 
 - include_tasks: download_machine_agent_win.yml

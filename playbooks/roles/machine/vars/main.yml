@@ -1,16 +1,18 @@
-
 # Define Agent Type and Version
 agent_version: 21.9.0.3184 #update this when upgrading
 agent_type: machine #update this when upgrading
 
+# valid values: install|update
+input_method: install
+
 #machine_hierarchy: "{{ 'Windows' if ansible_os_family == 'Windows' else 'Linux' }}|" # Make sure it ends with a |
 hierarchy_file_path_lin: "/tmp/cmdb-discovery.yml"
 hierarchy_file_path_win: "C:/tmp/cmdb-discovery.yml"
-hierarchy_department_value: "DepartmentA"
+hierarchy_department_value: "CoreIT"
 
 machine_custom_tags: # non-mandatory
-  department: [ "DepartmentA" ]
-metadata_file_path: "/tmp/cmdb-discovery.yaml" # non-mandatory
+  department: [ "CoreIT" ]
+metadata_file_path: "/tmp/cmdb-discovery.yml" # non-mandatory
 
 sim_enabled: "true"
 agent_log_level: "info"

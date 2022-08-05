@@ -3,7 +3,7 @@
   - name: Machine Agent linux Block
     become: true
     block:
-    - include_tasks: appd_sudoer.yml
+    #- include_tasks: appd_sudoer.yml
     - name: Ensures machine agent {{ machine_agent_dest_folder_linux }} dir exists
       file:
         path: "{{ machine_agent_dest_folder_linux }}/"
@@ -129,38 +129,30 @@
       remote_src: yes
     changed_when: false
 
-  - name: Configure Machine Agent controller-info.xml file
-    become: true
-    template:
-      src: templates/machine-agent-controller-info.xml.j2
-      dest: '{{ machine_agent_dest_folder_linux }}/conf/controller-info.xml'
-      owner: "{{ appdynamics_user }}"
-      group: "{{ appdynamics_user }}"
-      mode: 0755
-    changed_when: false
-    when: 
-      - application_name is not defined or application_name | length == 0
+  # - name: Configure Machine Agent controller-info.xml file
+  #   become: true
+  #   template:
+  #     src: templates/machine-agent-controller-info.xml.j2
+  #     dest: '{{ machine_agent_dest_folder_linux }}/conf/controller-info.xml'
+  #     owner: "{{ appdynamics_user }}"
+  #     group: "{{ appdynamics_user }}"
+  #     mode: 0755
+  #   changed_when: false
+  #   when: 
+  #     - application_name is not defined or application_name | length == 0
 
-  - name: Override Machine Agent controller-info.xml if application_name is set
-    become: true
-    template:
-      src: templates/machine-agent-controller-info.application.xml.j2
-      dest: '{{ machine_agent_dest_folder_linux }}/conf/controller-info.xml'
-      owner: "{{ appdynamics_user }}"
-      group: "{{ appdynamics_user }}"
-      mode: 0755
-    changed_when: false
-    when: 
-      - application_name is defined and application_name | length > 0
+  # - name: Override Machine Agent controller-info.xml if application_name is set
+  #   become: true
+  #   template:
+  #     src: templates/machine-agent-controller-info.application.xml.j2
+  #     dest: '{{ machine_agent_dest_folder_linux }}/conf/controller-info.xml'
+  #     owner: "{{ appdynamics_user }}"
+  #     group: "{{ appdynamics_user }}"
+  #     mode: 0755
+  #   changed_when: false
+  #   when: 
+  #     - application_name is defined and application_name | length > 0
 
-  # # Update the Log4j setting to apply the desired log level to all the loggers
-  # # listed in the {{agent_loggers}} list.
-  # - name: Set the log level on the agent (if != info, which it is by default)
-  #   include_role:
-  #     name: logger
-  #   vars:
-  #     logger_role_standalone: false # no need to check if the dir exists
-  #   when: agent_log_level|lower != 'info'
 
   - name: Ensure machine agent file is executable
     become: true

@@ -25,14 +25,14 @@
 
 - name: Set values based on metadata information
   set_fact:
-    metadata_environment: "{{ metadata_file_content.stdout | regex_search('classification:.*\"(.*)\"', '\\1') | first }}"
+    metadata_environment: "{{ metadata_file_content.stdout | regex_search('classification:(.*)\\n', '\\1') | first }}"
   ignore_errors: true
   when: 
     - metadata_file_content.stdout is defined
 
 - name: Set values based on metadata information
   set_fact:
-    metadata_primary_application: "{{ metadata_file_content.stdout | regex_search('primary_application:.*\"(.*)\"', '\\1') | first }}"
+    metadata_primary_application: "{{ metadata_file_content.stdout | regex_search('primary_application:(.*)\\n', '\\1') | first }}"
   ignore_errors: true
   when: 
     - metadata_file_content.stdout is defined
@@ -41,8 +41,8 @@
   set_fact: 
       machine_custom_tags_final: "{{ machine_custom_tags_final | default({}) | combine(machine_custom_tags) | combine ({ item.key : item.value }) }}"
   with_items:
-    - { 'key': 'primary_application' , 'value': "[\"{{ metadata_primary_application | default('unknown') }}\"]"}
-    - { 'key': 'environment' , 'value': "['{{ metadata_environment | default('unknown') }}']"}
+    - { 'key': 'primary_application' , 'value': "[\"{{ metadata_primary_application | default('unknown') | trim | regex_replace('\"', '') }}\"]"}
+    - { 'key': 'environment' , 'value': "['{{ metadata_environment | default('unknown') | trim | regex_replace('\"', '') }}']"}
     - { 'key': 'os_distribution' , 'value': "['{{ ansible_distribution | default('unknown') }}']"}
     - { 'key': 'os_distribution_version' , 'value': "['{{ ansible_distribution_version | default('unknown') }}']"}
 
