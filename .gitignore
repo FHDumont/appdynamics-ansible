@@ -12,3 +12,7 @@ ansible.cfg
 *.zip
 playbooks/roles/configuration/files/*.json
 playbooks/roles/configuration/files/dashboards/*.json
+
+# ACC
+acc/
+playbooks/roles/machine/vars/main.yml
