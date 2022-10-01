@@ -9,7 +9,7 @@ name: agents
 
 # The version of the collection. Must be compatible with semantic versioning
 # It must obey semantic versioning rules - MAJOR.MINOR.PATCH
-version: "21.6.0" 
+version: "22.7.0" 
 
 # The path to the Markdown (.md) readme file. This path is relative to the root of the collection
 readme: README.md
@@ -19,6 +19,7 @@ authors:
 - Israel Ogbole
 - Louis Nieuwoudt
 - Vitaly Zhuravlev
+- Fernando Dumont
 
 ### OPTIONAL but strongly recommended
 # A short summary description of the collection
@@ -44,16 +45,20 @@ tags:
 dependencies: {}
 
 # The URL of the originating SCM repository
-repository: https://github.com/Appdynamics/appdynamics-ansible
+# repository: https://github.com/Appdynamics/appdynamics-ansible
+repository: https://github.com/FHDumont/appdynamics-ansible
 
 # The URL to any online docs
-documentation: https://github.com/Appdynamics/appdynamics-ansible
+# documentation: https://github.com/Appdynamics/appdynamics-ansible
+documentation: https://github.com/FHDumont/appdynamics-ansible
 
 # The URL to the homepage of the collection/project
-homepage: https://github.com/Appdynamics/appdynamics-ansible
+# homepage: https://github.com/Appdynamics/appdynamics-ansible
+homepage: https://github.com/FHDumont/appdynamics-ansible
 
 # The URL to the collection issue tracker
-issues: https://github.com/Appdynamics/appdynamics-ansible/issues
+# issues: https://github.com/Appdynamics/appdynamics-ansible/issues
+issues: https://github.com/FHDumont/appdynamics-ansible
 
 # A list of file glob-like patterns used to filter any files or directories that should not be included in the build
 # artifact. A pattern is matched from the relative path of the file or directory of the collection directory. This

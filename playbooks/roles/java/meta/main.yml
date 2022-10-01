@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Israel Ogbole (https://galaxy.ansible.com/iogbole)
-  role_name: java
+  role_name: appdynamics.agents.java
   company: AppDynamics
   description: This role installs and configures the AppDynamics Java Agent
   license: Apache2

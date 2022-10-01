@@ -13,3 +13,5 @@ agent_dir_permission:
   group: "{{ appdynamics_user }}"
 
 create_appdynamics_user: yes
+
+java_agent_source_file: "AppServerAgent-{{ agent_version }}.zip"

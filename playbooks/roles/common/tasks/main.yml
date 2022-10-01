@@ -33,6 +33,11 @@
     set_fact:
       controller_protocol: "{% if enable_ssl|bool %}https{% else %}http{% endif %}"
 
+  - name: Set Java Agent Source Name for java8
+    set_fact:
+      java_agent_source_file: "AppServerAgent-1.8-{{ agent_version }}.zip"
+    when: agent_type == 'java8'
+
   - name: Print params
     vars:
        params: "
@@ -45,7 +50,8 @@
         machine_hierarchy = {{ machine_hierarchy }} |
         enable_proxy = {{ enable_proxy }} |
         agent_log_level = {{ agent_log_level }}|
-        agent_logger = {{ agent_loggers }}"
+        agent_logger = {{ agent_loggers }}|
+        java_agent_source_file = {{java_agent_source_file}}"
     debug:
       msg: "{{ params.split('|') }}"
   when: init_and_validate_agent_variables

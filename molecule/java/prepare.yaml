@@ -7,4 +7,4 @@
       pip:
         name: lxml
       delegate_to: localhost
-      when: ansible_os_family in ['Redhat', 'Debian']
+      when: ansible_os_family in ['Redhat', 'Debian', 'Darwin']

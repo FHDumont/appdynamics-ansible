@@ -37,14 +37,21 @@
       changed_when: false # this ensures this task is idempotent
 
      # add delegate_to: localhost for customers who are unable to download on the remote server
-    - name: Download Java Agent
-      get_url:
-        url: "{{ agent_download_url.stdout }}"
+    # - name: Download Java Agent
+    #   get_url:
+    #     url: "{{ agent_download_url.stdout }}"
+    #     dest: "{{ java_agent_dest_folder_linux }}/{{ java_agent_dest_file }}"
+    #     force: true # download a new file even if javaagent.zip exists.
+    #   changed_when: false
+    #   register: result
+    #   failed_when: result.status_code != 200
+    - name: Copy Agent files - from Local
+      become: true
+      ansible.builtin.copy:
+        src: "{{ java_agent_source_file }}"
         dest: "{{ java_agent_dest_folder_linux }}/{{ java_agent_dest_file }}"
-        force: true # download a new file even if javaagent.zip exists.
-      changed_when: false
+        mode: 0755
       register: result
-      failed_when: result.status_code != 200
 
     - name: Print download results
       debug:

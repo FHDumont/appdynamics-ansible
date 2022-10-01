@@ -45,6 +45,7 @@ linux_db_finder_string: db-agent
 # Machine Common
 ma_agent_dest_file: machine-agent.zip
 machine_hierarchy: ""
+enable_custom_extensions: false
 
 #controller defaults
 enable_ssl: false
@@ -54,7 +55,7 @@ analytics_event_endpoint: "https://fra-ana-api.saas.appdynamics.com:443"
 controller_port: "443"
 controller_account_name: "customer1"
 controller_global_analytics_account_name: "customer1-guid"
-enable_analytics_agent: "true"
+enable_analytics_agent: "false"
 
 #restart_app flag - Set this flag true to automatically restart service
 restart_app: false

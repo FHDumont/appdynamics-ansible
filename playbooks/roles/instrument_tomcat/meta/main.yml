@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Vitaly Zhuravlev (https://galaxy.ansible.com/iogbole)
-  role_name: instrument_tomcat
+  role_name: appdynamics.agents.instrument_tomcat
   company: AppDynamics
   description: This role installs and configures the AppDynamics Java Agent
   license: Apache2
